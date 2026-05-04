@@ -1,6 +1,6 @@
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
-from Event_driven_budget import ExpenseRequest, HeapManagment
+from event_driven_budget import ExpenseRequest, HeapManagment
 
 #web server initialization
 app = FastAPI(title="Event Budget Allocator API")
