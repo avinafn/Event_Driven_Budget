@@ -1,16 +1,16 @@
 class ExpenseRequest:
-    def init(self, description: str, department: str ,amount: float, priority: int):
+    def __init__(self, description: str, department: str ,amount: float, priority: int):
         self.description = description
         self.department = department
         self.amount = amount
         self.priority = priority
 
-    def rep(self):
+    def __repr__(self):
         return f"[Priority: {self.priority}] {self.department} - {self.description}: ${self.amount}"
 
 
 class HeapManagment:
-    def init(self):
+    def __init__(self):
         self.heap = []
     
     def parent(self, index):
@@ -38,7 +38,7 @@ class HeapManagment:
         if index > 0 and self.heap[index].priority > self.heap[parentIndex].priority:
             self.swap(index, parentIndex)
             #recursively check the new position compared to the new parent
-            heapifyUp(parentIndex)
+            self.heapifyUp(parentIndex)
 
     def removeMax(self):
         if len(self.heap) == 0:
