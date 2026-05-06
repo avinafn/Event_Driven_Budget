@@ -24,12 +24,13 @@ class expenseChecker(BaseModel):
 def submit_expense(payload: expenseChecker):
     global TOTAL_BUDGET
 
-    if TOTAL_BUDGET < (STARTING_BUDGET * 0.10) and payload.priority < 7:
+    if TOTAL_BUDGET <= (STARTING_BUDGET * 0.10) and payload.priority < 7:
         raise HTTPException(status_code = 400, detail = "CANNOT MOVE ON...")
-    request = ExpenseRequest(payload.description, payload.department, payload.amount, payload.priority)
-    program.insert(request)
+    else:
+        request = ExpenseRequest(payload.description, payload.department, payload.amount, payload.priority)
+        program.insert(request)
 
-    return {"status" : "success" }
+        return {"status" : "success" }
 
 @app.get("/process_program")
 def process_program():
