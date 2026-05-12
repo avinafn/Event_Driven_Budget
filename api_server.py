@@ -26,11 +26,14 @@ def submit_expense(payload: expenseChecker):
 
     if TOTAL_BUDGET <= (STARTING_BUDGET * 0.10) and payload.priority < 7:
         raise HTTPException(status_code = 400, detail = "CANNOT MOVE ON...")
-    else:
+    elif payload.amount > STARTING_BUDGET:
+        raise HTTPException(status_code = 400, detail = "Higher than budget ")
+
+    else: 
         request = ExpenseRequest(payload.description, payload.department, payload.amount, payload.priority)
         program.insert(request)
 
-        return {"status" : "success" }
+        return {"status : success" + str(request)}
 
 @app.get("/process_program")
 def process_program():
